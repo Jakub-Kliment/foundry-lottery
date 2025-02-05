@@ -11,7 +11,7 @@ import {VRFV2PlusClient} from "@chainlink/contracts/src/v0.8/vrf/dev/libraries/V
  * @notice This contract is for creating a sample raffle
  * @dev Implements Chainlink VRFv2.5
  */
-abstract contract Raffle is VRFConsumerBaseV2Plus {
+contract Raffle is VRFConsumerBaseV2Plus {
     // Custom errors
     error Raffle__SendMoreEthToEnterRaffle();
     error Raffle__TranseferFailed();
