@@ -14,9 +14,10 @@ abstract contract CodeConstants {
     uint256 public constant SEPOLIA_CHAIN_ID = 11155111;
     uint256 public constant LOCAL_CHAIN_ID = 31337;
 }
-contract HelperConfig is CodeConstants, Script {
 
+contract HelperConfig is CodeConstants, Script {
     error HelperConfig__InvalidChainId();
+
     struct NetworkConfig {
         uint256 entranceFee;
         uint256 interval;
@@ -63,11 +64,8 @@ contract HelperConfig is CodeConstants, Script {
             return localNetworkConfig;
         } else {
             vm.startBroadcast();
-            VRFCoordinatorV2_5Mock vrfCoordinatorMock = new VRFCoordinatorV2_5Mock(
-                MOCK_BASE_FEE,
-                MOCK_GAS_PRICE_LINK,
-                MOCK_WEI_PER_UNIT_LINK  
-            );
+            VRFCoordinatorV2_5Mock vrfCoordinatorMock =
+                new VRFCoordinatorV2_5Mock(MOCK_BASE_FEE, MOCK_GAS_PRICE_LINK, MOCK_WEI_PER_UNIT_LINK);
             LinkToken linkToken = new LinkToken();
 
             vm.stopBroadcast();

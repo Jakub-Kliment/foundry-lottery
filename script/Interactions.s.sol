@@ -8,7 +8,6 @@ import {LinkToken} from "test/mocks/LinkToken.sol";
 import {DevOpsTools} from "lib/foundry-devops/src/DevOpsTools.sol";
 
 contract CreateSubscription is Script {
-
     function createSubscriptionUsingConfig() public returns (uint256, address) {
         HelperConfig helperConfig = new HelperConfig();
         address vrfCoordinator = helperConfig.getConfig().vrfCoordinator;
@@ -29,7 +28,7 @@ contract CreateSubscription is Script {
     }
 
     function run() public {
-         createSubscriptionUsingConfig();
+        createSubscriptionUsingConfig();
     }
 }
 
@@ -45,8 +44,10 @@ contract FundSubscription is Script, CodeConstants {
         fundSubscription(vrfCoordinator, subscriptionId, linkToken, account);
     }
 
-    function fundSubscription(address vrfCoordinator, uint256 subscriptionId, address linkToken, address account) public {
-        console.log("Funding subscription: ",  subscriptionId);
+    function fundSubscription(address vrfCoordinator, uint256 subscriptionId, address linkToken, address account)
+        public
+    {
+        console.log("Funding subscription: ", subscriptionId);
         console.log("Using vrfCoordinator: ", vrfCoordinator);
         console.log("On chain Id: ", block.chainid);
 
@@ -67,11 +68,10 @@ contract FundSubscription is Script, CodeConstants {
 }
 
 contract AddConsumer is Script {
-
     function addConsumerUsingConfig(address mostRecentlyDeployed) public {
         HelperConfig helperConfig = new HelperConfig();
         uint256 subId = helperConfig.getConfig().subscriptionId;
-        address vrfCoordinator = helperConfig.getConfig().vrfCoordinator; 
+        address vrfCoordinator = helperConfig.getConfig().vrfCoordinator;
         address account = helperConfig.getConfig().account;
         addConsumer(mostRecentlyDeployed, vrfCoordinator, subId, account);
     }
@@ -88,6 +88,6 @@ contract AddConsumer is Script {
 
     function run() external {
         address mostRecentlyDeployed = DevOpsTools.get_most_recent_deployment("Raffle", block.chainid);
-        addConsumerUsingConfig (mostRecentlyDeployed);
+        addConsumerUsingConfig(mostRecentlyDeployed);
     }
 }

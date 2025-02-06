@@ -164,6 +164,6 @@ contract Raffle is VRFConsumerBaseV2Plus {
     }
 
     function getRecentWinner() external view returns (address) {
-        return s_recentWinner; 
+        return s_recentWinner;
     }
 }

@@ -18,7 +18,7 @@ contract LinkToken is ERC20 {
 
     function mint(address to, uint256 value) public {
         _mint(to, value);
-    } 
+    }
 
     event Transfer(address indexed from, address indexed to, uint256 value, bytes data);
 
